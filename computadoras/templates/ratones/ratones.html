@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <style>
+        body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+    </style>
+    <title>Lista de Ratones</title>
+</head>
+<body>
+<div class="topnav">
+  <a href="{% url 'index' %}">PCs</a>
+  <a href="{% url 'mon' %}">Monitores</a>
+  <a href="{% url 'tec' %}">Teclados</a>
+  <a class="active" href="">Ratones</a>
+</div>
+<div style="padding-left:16px">
+<h1>Lista de Ratones</h1>
+    <a href="nuevo_raton" class="button">Agregar Raton</a>
+    <br>
+    <br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Conexión</th>
+            <th>Tipo</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for raton in ratones %}
+            <tr>
+                <td>{{ raton.id }}</td>
+                <td>{{ raton.nombre }}</td>
+                <td>{{ raton.marca }}</td>
+                <td>{{ raton.tipo_entrada }}</td>
+                <td>{{ raton.tipo }}</td>
+                <td><a href="detalle_raton/{{ raton.id }}">Ver</a></td>
+                <td><a href="editar_raton/{{ raton.id }}">Editar</a></td>
+                <td><a href="eliminar_raton/{{ raton.id }}">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

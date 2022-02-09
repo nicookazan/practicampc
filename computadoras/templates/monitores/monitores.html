@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <style>
+        body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+    </style>
+    <title>Lista de Monitores</title>
+</head>
+<body>
+<div class="topnav">
+  <a href="{% url 'index' %}">PCs</a>
+  <a class="active" >Monitores</a>
+  <a href="{% url 'tec' %}">Teclados</a>
+  <a href="{% url 'rat' %}">Ratones</a>
+</div>
+<div style="padding-left:16px">
+   <h1>Lista de Monitores</h1>
+<a href="nuevo_monitor" class="button">Agregar Monitor</a>
+<br>
+<br>
+<table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Tamaño</th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for monitor in monitores %}
+            <tr>
+                <td>{{ monitor.id }}</td>
+                <td>{{ monitor.nombre }}</td>
+                <td>{{ monitor.marca}}</td>
+                <td>{{ monitor.width }}</td>
+                <td><a href="detalle_monitor/{{ monitor.id }}">Ver</a></td>
+                <td><a href="editar_monitor/{{ monitor.id }}">Editar</a></td>
+                <td><a href="eliminar_monitor/{{ monitor.id }}">Eliminar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
